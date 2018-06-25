@@ -3,11 +3,13 @@
 #undef __SCROLL_IMPL__
 
 #include "Hero.h"
+#include "Turret.h"
 
 Hero *hero;
 
 void ShooterGame::BindObjects () {
   ScrollBindObject<Hero> ("HeroObject");
+  ScrollBindObject<Turret> ("TurretObject");
 }
 
 orxSTATUS ShooterGame::Bootstrap () const {
@@ -30,7 +32,15 @@ orxSTATUS ShooterGame::Init () {
   orxSTATUS result = orxSTATUS_SUCCESS;
 
   hero = (Hero*)CreateObject("HeroObject");
+  (Turret*)CreateObject("TurretObject");
 
+  // its probably better to have a Scene object that gets created and
+  // calls update on each of its children, etc...
+  // could also have a SceneList object
+
+  // Scene
+  //   bool: active
+  //   bool: isActive()
   return result;
 }
 

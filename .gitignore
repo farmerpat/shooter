@@ -2,3 +2,4 @@
 *.o
 *.cih
 shooterd
+build/mac/gmake/obj/x32/Debug/*.d
