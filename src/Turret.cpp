@@ -1,5 +1,8 @@
 #include "Turret.h"
 
+int globCounter = 0;
+int globFrameDelay = 100;
+
 void Turret::OnCreate () {
   // assume that there only one type of turret now...
   // a single, top-mounted turret...
@@ -18,7 +21,12 @@ void Turret::OnCreate () {
 void Turret::OnDelete () { }
 
 void Turret::Update (const orxCLOCK_INFO &_rstInfo) {
-
+  if (globCounter >= globFrameDelay) {
+    globCounter=0;
+    this->FireGunZero();
+  } else {
+    globCounter++;
+  }
 }
 
 orxBOOL Turret::OnCollide (
@@ -32,4 +40,43 @@ orxBOOL Turret::OnCollide (
   orxLOG("\ncollision!");
 
   return true;
+}
+
+ScrollObject* Turret::GetGunByName (const std::string name) {
+  // consider adding error checking to make sure that name is
+  // "Zero", "One", "Two", or "Three"
+  ScrollObject *child;
+  std::string fullName = "Gun";
+  fullName.append(name);
+  fullName.append("Object");
+
+  for (child = this->GetOwnedChild(); child; child = child->GetOwnedSibling()) {
+    if (orxString_Compare(child->GetModelName(), (orxCHAR*)fullName.c_str()) == 0) {
+      return child;
+    }
+  }
+
+  return orxNULL;
+}
+
+// there might not need to be separate functions
+// for firing each gun
+void Turret::FireGunZero () {
+  ScrollObject *gunZero = this->GetGunByName("Zero");
+
+  if (gunZero != orxNULL) {
+    orxLOG("\nfire the gun!");
+    orxLOG("\ngun name: %s", gunZero->GetModelName());
+    // we either activate a spawner, or we add an enemy
+    // bullet object to it...
+  }
+}
+
+void Turret::FireGunOne () {
+}
+
+void Turret::FireGunTwo () {
+}
+
+void Turret::FireGunThree () {
 }
