@@ -14,4 +14,5 @@ class Hero : public ScrollObject {
     virtual void Update (const orxCLOCK_INFO &_rstInfo);
 
     orxFLOAT m_movementSpeed;
+    ScrollObject *herosGun;
 };

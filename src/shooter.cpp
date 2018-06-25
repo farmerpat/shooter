@@ -5,7 +5,6 @@
 #include "Hero.h"
 
 Hero *hero;
-ScrollObject *herosGun;
 
 void ShooterGame::BindObjects () {
   ScrollBindObject<Hero> ("HeroObject");
@@ -32,10 +31,6 @@ orxSTATUS ShooterGame::Init () {
 
   hero = (Hero*)CreateObject("HeroObject");
 
-  herosGun = hero->GetOwnedChild();
-
-  herosGun->Enable(orxFALSE);
-
   return result;
 }
 
@@ -44,12 +39,6 @@ orxSTATUS ShooterGame::Run () {
 
   if (orxInput_IsActive("Quit")) {
     result = orxSTATUS_FAILURE;
-  }
-
-  if (orxInput_IsActive("Shoot") && orxInput_HasNewStatus("Shoot")) {
-    herosGun->Enable(orxTRUE);
-  } else {
-    herosGun->Enable(orxFALSE);
   }
 
   return result;

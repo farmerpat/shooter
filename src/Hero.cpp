@@ -2,6 +2,8 @@
 
 void Hero::OnCreate () {
   m_movementSpeed = orxConfig_GetFloat("MovementSpeed");
+  this->herosGun = this->GetOwnedChild();
+  this->herosGun->Enable(orxFALSE);
 }
 
 void Hero::OnDelete () { }
@@ -19,9 +21,10 @@ void Hero::Update (const orxCLOCK_INFO &_rstInfo) {
 
   }
 
-  if (orxInput_IsActive("Shoot")) {
-    //orxLOG("\nshoot!");
-    // maybe do herosGun->Enable(orxTRUE) piece here
+  if (orxInput_IsActive("Shoot") && orxInput_HasNewStatus("Shoot")) {
+    this->herosGun->Enable(orxTRUE);
+  } else {
+    this->herosGun->Enable(orxFALSE);
   }
 
   SetSpeed(speed, false);
