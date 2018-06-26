@@ -38,6 +38,7 @@ orxSTATUS ShooterGame::Init () {
 
   hero = (Hero*)CreateObject("HeroObject");
   turret = (FixedTurret*)CreateObject("FixedTurretObject");
+  //turret->setFiringPattern("concurrent");
 
   // its probably better to have a Scene object that gets created and
   // calls update on each of its children, etc...

@@ -19,9 +19,9 @@ class FixedTurret : public Turret {
     );
     virtual void Update (const orxCLOCK_INFO &_rstInfo);
 
-    orxSTRING m_firingPattern;
-    orxSTRING m_mountPosition;
-    orxSTRING m_mountBorder;
+    std::string m_firingPattern;
+    std::string m_mountPosition;
+    std::string m_mountBorder;
     int consecutivePatternGunToFire = -1;
 
   public:

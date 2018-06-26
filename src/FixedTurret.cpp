@@ -9,12 +9,12 @@ void FixedTurret::OnCreate () {
   this->m_mountPosition = (orxSTRING)orxConfig_GetString("MountPosition");
   this->m_mountBorder = (orxSTRING)orxConfig_GetString("MountBorder");
 
-  if (orxString_Compare(m_firingPattern, "consecutive") == 0) {
+  if (orxString_Compare((orxCHAR*)m_firingPattern.c_str(), "consecutive") == 0) {
     this->consecutivePatternGunToFire = 0;
   }
 
-  if (orxString_Compare(m_mountBorder, "top") == 0) {
-    if (orxString_Compare(m_mountPosition, "center") == 0) {
+  if (orxString_Compare((orxCHAR*)m_mountBorder.c_str(), "top") == 0) {
+    if (orxString_Compare((orxCHAR*)m_mountPosition.c_str(), "center") == 0) {
       orxFLOAT rot = 180.0 * orxMATH_KF_DEG_TO_RAD;
       orxVECTOR size;
       this->GetSize(size);
@@ -38,7 +38,7 @@ void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
 
     globCounter = 0;
 
-    if (orxString_Compare(m_firingPattern, "consecutive") == 0) {
+    if (orxString_Compare((orxCHAR*)m_firingPattern.c_str(), "consecutive") == 0) {
       if (this->consecutivePatternGunToFire == 0) {
         this->FireGunZero();
         this->consecutivePatternGunToFire = 1;
@@ -56,11 +56,11 @@ void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
         this->consecutivePatternGunToFire = 0;
 
       }
-    } else if (orxString_Compare(m_firingPattern, "concurrent") == 0) {
-        this->FireGunZero();
-        this->FireGunOne();
-        this->FireGunTwo();
-        this->FireGunThree();
+    } else if (orxString_Compare((orxCHAR*)m_firingPattern.c_str(), "concurrent") == 0) {
+      this->FireGunZero();
+      this->FireGunOne();
+      this->FireGunTwo();
+      this->FireGunThree();
 
     }
   } else {
@@ -71,15 +71,15 @@ void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
 
 void FixedTurret::setFiringPattern (std::string newPattern) {
   // error-check this
-  this->m_firingPattern = (orxCHAR*)newPattern.c_str();
+  this->m_firingPattern = newPattern;
 }
 
 void FixedTurret::setMountPosition (std::string newMountPosition) {
-  this->m_mountPosition = (orxCHAR*)newMountPosition.c_str();
+  this->m_mountPosition = newMountPosition;
 }
 
 void FixedTurret::setMountBorder (std::string newMountBorder) {
-  this->m_mountBorder = (orxCHAR*)newMountBorder.c_str();
+  this->m_mountBorder = newMountBorder;
 }
 
 orxBOOL FixedTurret::OnCollide (
