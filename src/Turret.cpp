@@ -1,4 +1,5 @@
 #include "Turret.h"
+#include "EnemyGun.h"
 
 int globCounter = 0;
 int globFrameDelay = 100;
@@ -46,9 +47,9 @@ ScrollObject* Turret::GetGunByName (const std::string name) {
   // consider adding error checking to make sure that name is
   // "Zero", "One", "Two", or "Three"
   ScrollObject *child;
-  std::string fullName = "Gun";
+
+  std::string fullName = "EnemyGunObject";
   fullName.append(name);
-  fullName.append("Object");
 
   for (child = this->GetOwnedChild(); child; child = child->GetOwnedSibling()) {
     if (orxString_Compare(child->GetModelName(), (orxCHAR*)fullName.c_str()) == 0) {
@@ -62,13 +63,11 @@ ScrollObject* Turret::GetGunByName (const std::string name) {
 // there might not need to be separate functions
 // for firing each gun
 void Turret::FireGunZero () {
-  ScrollObject *gunZero = this->GetGunByName("Zero");
+  EnemyGun *gunZero = (EnemyGun*)this->GetGunByName("0");
 
   if (gunZero != orxNULL) {
-    orxLOG("\nfire the gun!");
-    orxLOG("\ngun name: %s", gunZero->GetModelName());
-    // we either activate a spawner, or we add an enemy
-    // bullet object to it...
+    gunZero->Fire();
+
   }
 }
 

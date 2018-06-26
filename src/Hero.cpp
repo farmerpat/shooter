@@ -38,7 +38,7 @@ orxBOOL Hero::OnCollide (
     const orxVECTOR &_rvNormal
 ) {
 
-  orxLOG("\ncollision!");
+  orxLOG("\nhero collision!");
 
   return true;
 }

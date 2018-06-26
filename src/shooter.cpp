@@ -4,12 +4,14 @@
 
 #include "Hero.h"
 #include "Turret.h"
+#include "EnemyGun.h"
 
 Hero *hero;
 
 void ShooterGame::BindObjects () {
   ScrollBindObject<Hero> ("HeroObject");
   ScrollBindObject<Turret> ("TurretObject");
+  ScrollBindObject<EnemyGun> ("EnemyGunObject");
 }
 
 orxSTATUS ShooterGame::Bootstrap () const {
