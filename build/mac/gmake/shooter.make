@@ -167,6 +167,7 @@ OBJECTS := \
 	$(OBJDIR)/shooter.o \
 	$(OBJDIR)/Hero.o \
 	$(OBJDIR)/Turret.o \
+	$(OBJDIR)/FixedTurret.o \
 	$(OBJDIR)/EnemyGun.o \
 
 RESOURCES := \
@@ -233,6 +234,10 @@ $(OBJDIR)/EnemyGun.o: ../../../src/EnemyGun.cpp
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 $(OBJDIR)/Turret.o: ../../../src/Turret.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+
+$(OBJDIR)/FixedTurret.o: ../../../src/FixedTurret.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

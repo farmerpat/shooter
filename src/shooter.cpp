@@ -4,13 +4,16 @@
 
 #include "Hero.h"
 #include "Turret.h"
+#include "FixedTurret.h"
 #include "EnemyGun.h"
 
 Hero *hero;
+FixedTurret *turret;
 
 void ShooterGame::BindObjects () {
   ScrollBindObject<Hero> ("HeroObject");
   ScrollBindObject<Turret> ("TurretObject");
+  ScrollBindObject<FixedTurret> ("FixedTurretObject");
   ScrollBindObject<EnemyGun> ("EnemyGunObject");
 }
 
@@ -34,7 +37,7 @@ orxSTATUS ShooterGame::Init () {
   orxSTATUS result = orxSTATUS_SUCCESS;
 
   hero = (Hero*)CreateObject("HeroObject");
-  (Turret*)CreateObject("TurretObject");
+  turret = (FixedTurret*)CreateObject("FixedTurretObject");
 
   // its probably better to have a Scene object that gets created and
   // calls update on each of its children, etc...

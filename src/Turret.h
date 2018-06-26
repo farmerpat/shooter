@@ -1,3 +1,6 @@
+// these should probably be added to all the header files...
+#ifndef TURRET_H
+#define TURRET_H
 #include "shooter.h"
 #include <string>
 
@@ -17,10 +20,12 @@ class Turret : public ScrollObject {
     );
     virtual void Update (const orxCLOCK_INFO &_rstInfo);
 
+  protected:
     ScrollObject* GetGunByName (const std::string);
     void FireGunZero ();
     void FireGunOne ();
     void FireGunTwo ();
     void FireGunThree ();
-
 };
+
+#endif
