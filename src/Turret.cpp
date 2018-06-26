@@ -25,6 +25,9 @@ void Turret::Update (const orxCLOCK_INFO &_rstInfo) {
   if (globCounter >= globFrameDelay) {
     globCounter=0;
     this->FireGunZero();
+    this->FireGunOne();
+    this->FireGunTwo();
+    this->FireGunThree();
   } else {
     globCounter++;
   }
@@ -72,10 +75,25 @@ void Turret::FireGunZero () {
 }
 
 void Turret::FireGunOne () {
+  EnemyGun *gunZero = (EnemyGun*)this->GetGunByName("1");
+
+  if (gunZero != orxNULL) {
+    gunZero->Fire();
+  }
 }
 
 void Turret::FireGunTwo () {
+  EnemyGun *gunZero = (EnemyGun*)this->GetGunByName("2");
+
+  if (gunZero != orxNULL) {
+    gunZero->Fire();
+  }
 }
 
 void Turret::FireGunThree () {
+  EnemyGun *gunZero = (EnemyGun*)this->GetGunByName("3");
+
+  if (gunZero != orxNULL) {
+    gunZero->Fire();
+  }
 }
