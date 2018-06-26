@@ -6,7 +6,7 @@ void EnemyGun::OnDelete () { }
 
 void EnemyGun::Update (const orxCLOCK_INFO &_rstInfo) { }
 
-void EnemyGun::Fire () {
+void EnemyGun::Fire (float firingSpeed) {
   // append an EnemyBulletObject to its own ChildList
   orxOBJECT *bullet;
   orxVECTOR speedVector = orxVECTOR_0;
@@ -15,7 +15,7 @@ void EnemyGun::Fire () {
 
   orxObject_SetParent(bullet, this->GetOrxObject());
 
-  speedVector.fY = -20.0f;
+  speedVector.fY = firingSpeed;
 
   orxObject_SetSpeed(bullet, &speedVector);
 }

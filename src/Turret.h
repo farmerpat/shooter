@@ -22,10 +22,10 @@ class Turret : public ScrollObject {
 
   protected:
     ScrollObject* GetGunByName (const std::string);
-    void FireGunZero ();
-    void FireGunOne ();
-    void FireGunTwo ();
-    void FireGunThree ();
+    void FireGunZero (float firingSpeed = 20.0f);
+    void FireGunOne (float firingSpeed = 20.0f);
+    void FireGunTwo (float firingSpeed = 20.0f);
+    void FireGunThree (float firingSpeed = 20.0f);
 };
 
 #endif

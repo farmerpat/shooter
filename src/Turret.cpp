@@ -38,35 +38,35 @@ ScrollObject* Turret::GetGunByName (const std::string name) {
 }
 
 // these four fns could be one function that takes the name
-void Turret::FireGunZero () {
+void Turret::FireGunZero (float firingSpeed) {
   EnemyGun *gunZero = (EnemyGun*)this->GetGunByName("0");
 
   if (gunZero != orxNULL) {
-    gunZero->Fire();
+    gunZero->Fire(firingSpeed);
 
   }
 }
 
-void Turret::FireGunOne () {
+void Turret::FireGunOne (float firingSpeed) {
   EnemyGun *gunZero = (EnemyGun*)this->GetGunByName("1");
 
   if (gunZero != orxNULL) {
-    gunZero->Fire();
+    gunZero->Fire(firingSpeed);
   }
 }
 
-void Turret::FireGunTwo () {
+void Turret::FireGunTwo (float firingSpeed) {
   EnemyGun *gunZero = (EnemyGun*)this->GetGunByName("2");
 
   if (gunZero != orxNULL) {
-    gunZero->Fire();
+    gunZero->Fire(firingSpeed);
   }
 }
 
-void Turret::FireGunThree () {
+void Turret::FireGunThree (float firingSpeed) {
   EnemyGun *gunZero = (EnemyGun*)this->GetGunByName("3");
 
   if (gunZero != orxNULL) {
-    gunZero->Fire();
+    gunZero->Fire(firingSpeed);
   }
 }

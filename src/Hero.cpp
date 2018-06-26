@@ -38,7 +38,14 @@ orxBOOL Hero::OnCollide (
     const orxVECTOR &_rvNormal
 ) {
 
-  orxLOG("\nhero collision!");
+  // this probably bombs because the laser isn't a ScrollObject
+  // ...should probably make it one so that we can destroy...
+  //const orxSTRING colliderName = _poCollider->GetModelName();
 
-  return true;
+  // take damage or die...
+  if (orxString_Compare(_zColliderPartName, "EnemyLaserBodyPart") == 0) {
+    orxLOG("\n das laser collision...");
+  }
+
+  return orxTRUE;
 }

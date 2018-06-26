@@ -36,8 +36,10 @@ orxSTATUS ShooterGame::Bootstrap () const {
 orxSTATUS ShooterGame::Init () {
   orxSTATUS result = orxSTATUS_SUCCESS;
 
+  // the Scene will be handling all this in the future...
   hero = (Hero*)CreateObject("HeroObject");
   turret = (FixedTurret*)CreateObject("FixedTurretObject");
+  turret->setFiringSpeed(-100.0f);
   //turret->setFiringPattern("concurrent");
 
   // its probably better to have a Scene object that gets created and

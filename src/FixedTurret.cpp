@@ -40,33 +40,37 @@ void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
 
     if (orxString_Compare((orxCHAR*)m_firingPattern.c_str(), "consecutive") == 0) {
       if (this->consecutivePatternGunToFire == 0) {
-        this->FireGunZero();
+        this->FireGunZero(this->m_firingSpeed);
         this->consecutivePatternGunToFire = 1;
 
       } else if (this->consecutivePatternGunToFire == 1) {
-        this->FireGunOne();
+        this->FireGunOne(this->m_firingSpeed);
         this->consecutivePatternGunToFire = 2;
 
       } else if (this->consecutivePatternGunToFire == 2) {
-        this->FireGunTwo();
+        this->FireGunTwo(this->m_firingSpeed);
         this->consecutivePatternGunToFire = 3;
 
       } else if (this->consecutivePatternGunToFire == 3) {
-        this->FireGunThree();
+        this->FireGunThree(this->m_firingSpeed);
         this->consecutivePatternGunToFire = 0;
 
       }
     } else if (orxString_Compare((orxCHAR*)m_firingPattern.c_str(), "concurrent") == 0) {
-      this->FireGunZero();
-      this->FireGunOne();
-      this->FireGunTwo();
-      this->FireGunThree();
+      this->FireGunZero(this->m_firingSpeed);
+      this->FireGunOne(this->m_firingSpeed);
+      this->FireGunTwo(this->m_firingSpeed);
+      this->FireGunThree(this->m_firingSpeed);
 
     }
   } else {
     globCounter++;
 
   }
+}
+
+void FixedTurret::setFiringSpeed (float newFiringSpeed) {
+  this->m_firingSpeed = newFiringSpeed;
 }
 
 void FixedTurret::setFiringPattern (std::string newPattern) {
