@@ -39,6 +39,7 @@ void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
     globCounter = 0;
 
     if (orxString_Compare((orxCHAR*)m_firingPattern.c_str(), "consecutive") == 0) {
+      // maybe we randomly determine the next number
       if (this->consecutivePatternGunToFire == 0) {
         this->FireGunZero(this->m_firingSpeed);
         this->consecutivePatternGunToFire = 1;

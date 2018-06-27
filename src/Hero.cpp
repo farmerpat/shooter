@@ -1,9 +1,10 @@
 #include "Hero.h"
+#include "EnemyBullet.h"
 
 void Hero::OnCreate () {
   m_movementSpeed = orxConfig_GetFloat("MovementSpeed");
-  this->herosGun = this->GetOwnedChild();
-  this->herosGun->Enable(orxFALSE);
+  this->m_herosGun = this->GetOwnedChild();
+  this->m_herosGun->Enable(orxFALSE);
 }
 
 void Hero::OnDelete () { }
@@ -22,12 +23,16 @@ void Hero::Update (const orxCLOCK_INFO &_rstInfo) {
   }
 
   if (orxInput_IsActive("Shoot") && orxInput_HasNewStatus("Shoot")) {
-    this->herosGun->Enable(orxTRUE);
+    this->m_herosGun->Enable(orxTRUE);
   } else {
-    this->herosGun->Enable(orxFALSE);
+    this->m_herosGun->Enable(orxFALSE);
   }
 
   SetSpeed(speed, false);
+}
+
+int Hero::getHeath () {
+  return this->m_hp;
 }
 
 orxBOOL Hero::OnCollide (
@@ -38,13 +43,30 @@ orxBOOL Hero::OnCollide (
     const orxVECTOR &_rvNormal
 ) {
 
-  // this probably bombs because the laser isn't a ScrollObject
-  // ...should probably make it one so that we can destroy...
-  //const orxSTRING colliderName = _poCollider->GetModelName();
+  // _poCollider is the object that hit us
+  // _zPartName is the body part of our that was hit
+  // _zColliderPartName is the body part of the object that hit us
+  // presumably, _rvPosition is the point of collision
+  // and _rvNormal is the normal of the collision
 
-  // take damage or die...
-  if (orxString_Compare(_zColliderPartName, "EnemyLaserBodyPart") == 0) {
-    orxLOG("\n das laser collision...");
+  const orxSTRING colliderName = _poCollider->GetModelName();
+
+  if (orxString_Compare(colliderName, "EnemyBulletObject") == 0) {
+    EnemyBullet *bullet = (EnemyBullet*)_poCollider;
+
+    // take damage
+    this->m_hp -= bullet->getDamage();
+
+    // show effect...
+
+    // destroy bullet
+    bullet->Enable(orxFALSE);
+
+    orxLOG("new hp: %d", this->m_hp);
+
+    if (this->m_hp < 0) {
+      this->m_hp = 0;
+    }
   }
 
   return orxTRUE;
