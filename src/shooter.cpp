@@ -64,9 +64,17 @@ orxSTATUS ShooterGame::Run () {
   return result;
 }
 
-void ShooterGame::Exit () {
+void ShooterGame::Exit () { }
 
-}
+// this wont get used in this game, but is a more of
+// a note that the function exists...
+void ShooterGame::CameraUpdate (const orxCLOCK_INFO &_rstInfo) { }
+
+void ShooterGame::OnStartGame() { }
+
+void ShooterGame::OnStopGame() { }
+
+void ShooterGame::OnPauseGame (orxBOOL _bPause) { }
 
 int main(int argc, char **argv) {
   ShooterGame::GetInstance().Execute(argc, argv);

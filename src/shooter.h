@@ -12,6 +12,11 @@ class ShooterGame : public Scroll<ShooterGame> {
     virtual orxSTATUS Init ();
     virtual orxSTATUS Run ();
     virtual void Exit();
+    virtual void CameraUpdate(const orxCLOCK_INFO &_rstInfo);
+    virtual void OnStartGame ();
+    virtual void OnStopGame ();
+    virtual void OnPauseGame (orxBOOL);
+
 };
 
 #endif
