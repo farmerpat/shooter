@@ -1,10 +1,12 @@
 #include "Hero.h"
 #include "EnemyBullet.h"
+#include <string>
 
 void Hero::OnCreate () {
   m_movementSpeed = orxConfig_GetFloat("MovementSpeed");
   this->m_herosGun = this->GetOwnedChild();
   this->m_herosGun->Enable(orxFALSE);
+  this->m_herosHealthBar = orxObject_CreateFromConfig("HerosHealthBar");
 }
 
 void Hero::OnDelete () { }
@@ -29,6 +31,84 @@ void Hero::Update (const orxCLOCK_INFO &_rstInfo) {
   }
 
   SetSpeed(speed, false);
+
+  // this seems more ineffecient than keeping track
+  // or whether or not we need to do this (e.g. healthHasChanged flag),
+  // and then doing it
+  this->updateHealthBar();
+}
+
+void Hero::updateHealthBar () {
+  /*
+  // first param is resource group name, second param is resource name,
+  // they are both strings
+  orxSTRING resourceGroup = "Texture";
+  orxSTRING resourceName = "Health90.png";
+
+  //const orxSTRING fileName = orxResource_Locate(resourceGroup, resourceName);
+  //orxLOG("fileName: %s", fileName);
+
+  const orxSTRING fileName = "file:/home/pconnelly/hacks/orx/shooter/data/texture/Health90.png";
+
+  // bool == true will keep texture in cache after all referenches die
+  orxTEXTURE *texture = orxTexture_CreateFromFile (fileName, orxTRUE);
+
+  //orxTEXTURE *texture = orxTexture_CreateFromFile (fileName, orxFALSE);
+  orxGRAPHIC *healthBarGraphic = orxObject_GetWorkingGraphic(this->m_herosHealthBar);
+  orxGraphic_SetData(healthBarGraphic, (orxSTRUCTURE*) texture);
+  */
+
+  // is it bad to include string just for this,
+  // instead of using orxSTRING?
+  std::string fileName;
+
+  if (this->getHeath() >= 100) {
+    orxLOG("100");
+    fileName = "Health100.png";
+
+  } else if (this->getHeath() >= 90) {
+    orxLOG("90");
+    fileName = "Health90.png";
+
+  } else if (this->getHeath() >= 80) {
+    fileName = "Health80.png";
+
+  } else if (this->getHeath() >= 70) {
+    fileName = "Health70.png";
+
+  } else if (this->getHeath() >= 60) {
+    fileName = "Health60.png";
+
+  } else if (this->getHeath() >= 50) {
+    fileName = "Health50.png";
+
+  } else if (this->getHeath() >= 40) {
+    fileName = "Health40.png";
+
+  } else if (this->getHeath() >= 30) {
+    fileName = "Health30.png";
+
+  } else if (this->getHeath() >= 20) {
+    fileName = "Health20.png";
+
+  } else if (this->getHeath() >= 10) {
+    fileName = "Health10.png";
+
+  } else {
+    fileName = "Health0.png";
+
+  }
+
+  orxConfig_PushSection("HerosHealthBarGraphic");
+  orxSTRING field = "Texture";
+  const orxSTRING textureOriginalValue = orxConfig_GetString(field);
+  orxConfig_SetString("Texture", (orxCHAR*)fileName.c_str());
+
+  orxObject_Delete(this->m_herosHealthBar);
+
+  this->m_herosHealthBar = orxObject_CreateFromConfig("HerosHealthBar");
+  orxConfig_PopSection();
+
 }
 
 int Hero::getHeath () {

@@ -12,10 +12,12 @@ class Hero : public ScrollObject {
         const orxVECTOR &_rvNormal
     );
     virtual void Update (const orxCLOCK_INFO &_rstInfo);
+    void updateHealthBar ();
 
     orxFLOAT m_movementSpeed;
     ScrollObject *m_herosGun;
     int m_hp = 100;
+    orxOBJECT *m_herosHealthBar;
 
   public:
     int getHeath ();
