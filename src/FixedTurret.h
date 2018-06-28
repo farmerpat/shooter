@@ -24,10 +24,14 @@ class FixedTurret : public Turret {
     std::string m_mountBorder;
     int consecutivePatternGunToFire = -1;
     float m_firingSpeed = -2.0f;
+    orxFLOAT m_firingDelay = 1.0f;
+    orxFLOAT m_dtElapsed = 0.0f;
 
   public:
     void setFiringPattern (std::string);
     void setMountPosition (std::string);
     void setMountBorder (std::string);
     void setFiringSpeed (float);
+    void setFiringDelay (orxFLOAT);
+    orxFLOAT getFiringDelay ();
 };

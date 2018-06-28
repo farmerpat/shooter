@@ -1,9 +1,6 @@
 #include "FixedTurret.h"
 //#include "EnemyGun.h"
 
-int globCounter = 0;
-int globFrameDelay = 1400;
-
 void FixedTurret::OnCreate () {
   this->m_firingPattern = (orxSTRING)orxConfig_GetString("FiringPattern");
   this->m_mountPosition = (orxSTRING)orxConfig_GetString("MountPosition");
@@ -32,11 +29,10 @@ void FixedTurret::OnCreate () {
 void FixedTurret::OnDelete () { }
 
 void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
-  // use a proper clock for this...
-  if (globCounter >= globFrameDelay) {
-    // try making a firing pattern or something...how to implement
+  this->m_dtElapsed += _rstInfo.fDT;
 
-    globCounter = 0;
+  if (this->m_dtElapsed >= this->m_firingDelay) {
+    this->m_dtElapsed = 0.0f;
 
     if (orxString_Compare((orxCHAR*)m_firingPattern.c_str(), "consecutive") == 0) {
       // maybe we randomly determine the next number
@@ -64,10 +60,15 @@ void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
       this->FireGunThree(this->m_firingSpeed);
 
     }
-  } else {
-    globCounter++;
-
   }
+}
+
+void FixedTurret::setFiringDelay (orxFLOAT newFiringDelay) {
+  this->m_firingDelay = newFiringDelay;
+}
+
+orxFLOAT FixedTurret::getFiringDelay () {
+  return this->m_firingDelay;
 }
 
 void FixedTurret::setFiringSpeed (float newFiringSpeed) {
