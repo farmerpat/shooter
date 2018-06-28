@@ -9,5 +9,5 @@ class EnemyGun : public ScrollObject {
   public:
     // might consider giving this a parameter or two...
     // e.g. shot direction...
-    void Fire (float firingSpeed = 20.0f);
+    void Fire (float firingSpeed = 5.0f);
 };

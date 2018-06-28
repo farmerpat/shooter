@@ -23,7 +23,7 @@ class FixedTurret : public Turret {
     std::string m_mountPosition;
     std::string m_mountBorder;
     int consecutivePatternGunToFire = -1;
-    float m_firingSpeed = -20.0f;
+    float m_firingSpeed = -2.0f;
 
   public:
     void setFiringPattern (std::string);

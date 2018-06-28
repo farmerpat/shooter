@@ -2,7 +2,7 @@
 //#include "EnemyGun.h"
 
 int globCounter = 0;
-int globFrameDelay = 100;
+int globFrameDelay = 1400;
 
 void FixedTurret::OnCreate () {
   this->m_firingPattern = (orxSTRING)orxConfig_GetString("FiringPattern");
