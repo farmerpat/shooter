@@ -70,3 +70,7 @@ void Turret::FireGunThree (float firingSpeed) {
     gunZero->Fire(firingSpeed);
   }
 }
+
+int Turret::getHeath () {
+  return this->m_hp;
+}

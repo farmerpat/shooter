@@ -63,11 +63,9 @@ void Hero::updateHealthBar () {
   std::string fileName;
 
   if (this->getHeath() >= 100) {
-    orxLOG("100");
     fileName = "Health100.png";
 
   } else if (this->getHeath() >= 90) {
-    orxLOG("90");
     fileName = "Health90.png";
 
   } else if (this->getHeath() >= 80) {
@@ -141,8 +139,6 @@ orxBOOL Hero::OnCollide (
 
     // destroy bullet
     bullet->Enable(orxFALSE);
-
-    orxLOG("new hp: %d", this->m_hp);
 
     if (this->m_hp < 0) {
       this->m_hp = 0;

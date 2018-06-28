@@ -26,6 +26,10 @@ class Turret : public ScrollObject {
     void FireGunOne (float firingSpeed = 20.0f);
     void FireGunTwo (float firingSpeed = 20.0f);
     void FireGunThree (float firingSpeed = 20.0f);
+    int m_hp = 100;
+
+  public:
+    int getHeath ();
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "FixedTurret.h"
-//#include "EnemyGun.h"
+#include "HeroBullet.h"
 
 void FixedTurret::OnCreate () {
   this->m_firingPattern = (orxSTRING)orxConfig_GetString("FiringPattern");
@@ -96,7 +96,23 @@ orxBOOL FixedTurret::OnCollide (
     const orxVECTOR &_rvNormal
 ) {
 
-  orxLOG("\nFixedTurret collision!");
+  const orxSTRING colliderName = _poCollider->GetModelName();
+
+  if (orxString_Compare(colliderName, "HeroBulletObject") == 0) {
+    HeroBullet *bullet = (HeroBullet*)_poCollider;
+
+    // take damage
+    this->m_hp -= bullet->getDamage();
+
+    // show effect...
+
+    // destroy bullet
+    bullet->Enable(orxFALSE);
+
+    if (this->m_hp < 0) {
+      this->m_hp = 0;
+    }
+  }
 
   return true;
 }
