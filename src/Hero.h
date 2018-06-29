@@ -13,12 +13,18 @@ class Hero : public ScrollObject {
     );
     virtual void Update (const orxCLOCK_INFO &_rstInfo);
     void updateHealthBar ();
+    void explode();
 
     orxFLOAT m_movementSpeed;
     ScrollObject *m_herosGun;
-    int m_hp = 100;
     orxOBJECT *m_herosHealthBar;
+
+    int m_hp = 100;
+    int m_lives = 3;
+    bool m_alive = true;
 
   public:
     int getHeath ();
+    int getLives ();
+    bool isAlive ();
 };

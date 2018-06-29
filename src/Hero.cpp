@@ -36,6 +36,11 @@ void Hero::Update (const orxCLOCK_INFO &_rstInfo) {
   // or whether or not we need to do this (e.g. healthHasChanged flag),
   // and then doing it
   this->updateHealthBar();
+
+  if (this->m_alive && (this->getHeath() <= 0)) {
+    this->explode();
+
+  }
 }
 
 void Hero::updateHealthBar () {
@@ -113,6 +118,22 @@ int Hero::getHeath () {
   return this->m_hp;
 }
 
+int Hero::getLives () {
+  return this->m_lives;
+}
+
+bool Hero::isAlive () {
+  return this->m_alive;
+}
+
+void Hero::explode () {
+  // check the number of lives before killing him off completely...
+  this->m_alive = false;
+
+  orxLOG("exploding hero!");
+
+}
+
 orxBOOL Hero::OnCollide (
     ScrollObject *_poCollider,
     const orxSTRING _zPartName,
@@ -137,8 +158,8 @@ orxBOOL Hero::OnCollide (
 
     // show effect...
 
-    // destroy bullet
-    bullet->Enable(orxFALSE);
+    // destroy bullet and its children
+    bullet->Enable(orxFALSE, orxTRUE);
 
     if (this->m_hp < 0) {
       this->m_hp = 0;

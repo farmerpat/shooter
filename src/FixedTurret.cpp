@@ -106,8 +106,8 @@ orxBOOL FixedTurret::OnCollide (
 
     // show effect...
 
-    // destroy bullet
-    bullet->Enable(orxFALSE);
+    // destroy then bullet and its children
+    bullet->Enable(orxFALSE, orxTRUE);
 
     if (this->m_hp < 0) {
       this->m_hp = 0;
