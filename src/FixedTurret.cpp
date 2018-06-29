@@ -34,22 +34,43 @@ void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
   if (this->m_dtElapsed >= this->m_firingDelay) {
     this->m_dtElapsed = 0.0f;
 
+    // seriously, refactor this...
     if (orxString_Compare((orxCHAR*)m_firingPattern.c_str(), "consecutive") == 0) {
       // maybe we randomly determine the next number
       if (this->consecutivePatternGunToFire == 0) {
         this->FireGunZero(this->m_firingSpeed);
+
+        orxSOUND *sound;
+        sound = orxSound_CreateFromConfig("EnemyBulletSound");
+        orxSound_Play(sound);
+
         this->consecutivePatternGunToFire = 1;
 
       } else if (this->consecutivePatternGunToFire == 1) {
         this->FireGunOne(this->m_firingSpeed);
+
+        orxSOUND *sound;
+        sound = orxSound_CreateFromConfig("EnemyBulletSound");
+        orxSound_Play(sound);
+
         this->consecutivePatternGunToFire = 2;
 
       } else if (this->consecutivePatternGunToFire == 2) {
         this->FireGunTwo(this->m_firingSpeed);
+
+        orxSOUND *sound;
+        sound = orxSound_CreateFromConfig("EnemyBulletSound");
+        orxSound_Play(sound);
+
         this->consecutivePatternGunToFire = 3;
 
       } else if (this->consecutivePatternGunToFire == 3) {
         this->FireGunThree(this->m_firingSpeed);
+
+        orxSOUND *sound;
+        sound = orxSound_CreateFromConfig("EnemyBulletSound");
+        orxSound_Play(sound);
+
         this->consecutivePatternGunToFire = 0;
 
       }
@@ -59,6 +80,9 @@ void FixedTurret::Update (const orxCLOCK_INFO &_rstInfo) {
       this->FireGunTwo(this->m_firingSpeed);
       this->FireGunThree(this->m_firingSpeed);
 
+      orxSOUND *sound;
+      sound = orxSound_CreateFromConfig("EnemyBulletSound");
+      orxSound_Play(sound);
     }
   }
 }
