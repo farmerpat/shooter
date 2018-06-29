@@ -26,6 +26,10 @@ void Hero::Update (const orxCLOCK_INFO &_rstInfo) {
 
   if (orxInput_IsActive("Shoot") && orxInput_HasNewStatus("Shoot")) {
     this->m_herosGun->Enable(orxTRUE);
+    orxSOUND *sound;
+    sound = orxSound_CreateFromConfig("HeroBulletSound");
+    orxSound_Play(sound);
+
   } else {
     this->m_herosGun->Enable(orxFALSE);
   }
@@ -130,8 +134,11 @@ void Hero::explode () {
   // check the number of lives before killing him off completely...
   this->m_alive = false;
 
-  orxLOG("exploding hero!");
+  orxSOUND *sound;
+  sound = orxSound_CreateFromConfig("HeroExplosionSound");
+  orxSound_Play(sound);
 
+  this->Enable(orxFALSE, orxTRUE);
 }
 
 orxBOOL Hero::OnCollide (
@@ -140,7 +147,7 @@ orxBOOL Hero::OnCollide (
     const orxSTRING _zColliderPartName,
     const orxVECTOR &_rvPosition,
     const orxVECTOR &_rvNormal
-) {
+    ) {
 
   // _poCollider is the object that hit us
   // _zPartName is the body part of our that was hit
@@ -163,6 +170,12 @@ orxBOOL Hero::OnCollide (
 
     if (this->m_hp < 0) {
       this->m_hp = 0;
+    }
+
+    if (this->isAlive()) {
+      orxSOUND *sound;
+      sound = orxSound_CreateFromConfig("HeroDamageSound");
+      orxSound_Play(sound);
     }
   }
 
