@@ -170,6 +170,7 @@ OBJECTS := \
 	$(OBJDIR)/FixedTurret.o \
 	$(OBJDIR)/EnemyGun.o \
 	$(OBJDIR)/EnemyBullet.o \
+	$(OBJDIR)/HeroBullet.o \
 
 RESOURCES := \
 
@@ -229,6 +230,10 @@ $(GCH): $(PCH)
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
 endif
+
+$(OBJDIR)/HeroBullet.o: ../../../src/HeroBullet.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 $(OBJDIR)/EnemyBullet.o: ../../../src/EnemyBullet.cpp
 	@echo $(notdir $<)
