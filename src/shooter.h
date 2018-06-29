@@ -1,5 +1,5 @@
-#ifndef __SCROLL_TUTORIAL_H_
-#define __SCROLL_TUTORIAL_H_
+#ifndef __SHOOTER_H_
+#define __SHOOTER_H_
 
 #define __NO_SCROLLED__
 #include <Scroll.h>

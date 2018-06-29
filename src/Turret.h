@@ -1,6 +1,6 @@
 // these should probably be added to all the header files...
-#ifndef TURRET_H
-#define TURRET_H
+#ifndef __TURRET_H_
+#define __TURRET_H_
 #include "shooter.h"
 #include <string>
 

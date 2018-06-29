@@ -1,3 +1,6 @@
+#ifndef __HERO_H_
+#define __HERO_H_
+
 #include "shooter.h"
 
 class Hero : public ScrollObject {
@@ -28,3 +31,5 @@ class Hero : public ScrollObject {
     int getLives ();
     bool isAlive ();
 };
+
+#endif

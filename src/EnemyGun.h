@@ -1,3 +1,6 @@
+#ifndef __ENEMY_GUN_
+#define __ENEMY_GUN_
+
 #include "shooter.h"
 
 class EnemyGun : public ScrollObject {
@@ -11,3 +14,5 @@ class EnemyGun : public ScrollObject {
     // e.g. shot direction...
     void Fire (float firingSpeed = 5.0f);
 };
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef __FIXED_TURRET_H_
+#define __FIXED_TURRET_H_
 #include "shooter.h"
 #include "Turret.h"
 #include <string>
@@ -35,3 +37,5 @@ class FixedTurret : public Turret {
     void setFiringDelay (orxFLOAT);
     orxFLOAT getFiringDelay ();
 };
+
+#endif

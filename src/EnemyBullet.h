@@ -1,3 +1,5 @@
+#ifndef __ENEMY_BULLET_H_
+#define __ENEMY_BULLET_H_
 #include "shooter.h"
 
 class EnemyBullet : public ScrollObject {
@@ -13,3 +15,5 @@ class EnemyBullet : public ScrollObject {
     void setDamage (int);
     int getDamage ();
 };
+
+#endif

@@ -2,7 +2,9 @@
 *.o
 *.so
 *.cih
-shooterd
+bin/shooterd
+bin/shooterp
+bin/shooter
 build/mac/gmake/obj/x32/Debug/*.d
 build/linux/gmake/obj/x64/
 build/linux/gmake/obj/x32/

@@ -48,9 +48,10 @@ ifeq ($(config),profile64)
   TARGETDIR  = ../../../bin
   TARGET     = $(TARGETDIR)/shooterp
   DEFINES   += -D__orxPROFILER__
-  INCLUDES  += -I$(ORX)/include
+  INCLUDES  += -I../../../../../../source/orx/code/include -I../../../scroll/include/Scroll
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS    += $(CFLAGS) $(ALL_CPPFLAGS) -ffast-math -g -msse2 -O2 -m64 -Wno-unused-function -fschedule-insns
+  #ALL_CFLAGS    += $(CFLAGS) $(ALL_CPPFLAGS) -ffast-math -g -msse2 -O2 -m64 -Wno-unused-function -fschedule-insns
+  ALL_CFLAGS    += $(CFLAGS) $(ALL_CPPFLAGS) -ffast-math -g -msse2 -O1 -m64 -Wno-unused-function -fschedule-insns
   ALL_CXXFLAGS  += $(CXXFLAGS) $(ALL_CFLAGS) -fno-exceptions -fno-rtti
   ALL_RESFLAGS  += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   ALL_LDFLAGS   += $(LDFLAGS) -L$(ORX)/lib/dynamic -L. -m64 -L/usr/lib64 -Wl,-rpath ./ -Wl,--export-dynamic
@@ -72,9 +73,10 @@ ifeq ($(config),release64)
   TARGETDIR  = ../../../bin
   TARGET     = $(TARGETDIR)/shooter
   DEFINES   +=
-  INCLUDES  += -I$(ORX)/include
+  INCLUDES  += -I../../../../../../source/orx/code/include -I../../../scroll/include/Scroll
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS    += $(CFLAGS) $(ALL_CPPFLAGS) -ffast-math -g -msse2 -O2 -m64 -Wno-unused-function -fschedule-insns
+  #ALL_CFLAGS    += $(CFLAGS) $(ALL_CPPFLAGS) -ffast-math -g -msse2 -O2 -m64 -Wno-unused-function -fschedule-insns
+  ALL_CFLAGS    += $(CFLAGS) $(ALL_CPPFLAGS) -ffast-math -g -msse2 -O1 -m64 -Wno-unused-function -fschedule-insns
   ALL_CXXFLAGS  += $(CXXFLAGS) $(ALL_CFLAGS) -fno-exceptions -fno-rtti
   ALL_RESFLAGS  += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   ALL_LDFLAGS   += $(LDFLAGS) -L$(ORX)/lib/dynamic -L. -m64 -L/usr/lib64 -Wl,-rpath ./ -Wl,--export-dynamic

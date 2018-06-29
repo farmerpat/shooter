@@ -1,3 +1,6 @@
+#ifndef __HERO_BULLET_H_
+#define __HERO_BULLET_H_
+
 #include "shooter.h"
 
 class HeroBullet : public ScrollObject {
@@ -13,3 +16,5 @@ class HeroBullet : public ScrollObject {
     void setDamage (int);
     int getDamage ();
 };
+
+#endif
