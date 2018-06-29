@@ -136,6 +136,10 @@ orxBOOL FixedTurret::OnCollide (
     if (this->m_hp < 0) {
       this->m_hp = 0;
     }
+
+    orxSOUND *sound;
+    sound = orxSound_CreateFromConfig("EnemyDamageSound");
+    orxSound_Play(sound);
   }
 
   return true;
